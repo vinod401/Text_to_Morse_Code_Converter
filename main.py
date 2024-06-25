@@ -26,8 +26,28 @@ def decode(code):
             decoded_text += ' '
         elif char in code_list:
             decoded_text += alphabet_list[code_list.index(char)]
-
+        else:
+            return f"Invalid character involved {char} "
     return decoded_text.strip()
+
+
+exit_loop = False
+
+while not exit_loop:
+    choice = input('Do you want to encode or decode(e/d)').lower()
+
+    if choice == 'e':
+        text_to_code = input('Enter the text to encode : ')
+        print(encode(text_to_code.strip().lower()))
+    elif choice == 'd':
+        code_to_text = input('Enter the code to decode : ')
+        print(decode(code_to_text.strip()))
+    else:
+        print("invalid request")
+
+    if input("do you want to continue(y/n)").lower() != 'y':
+        exit_loop = True
+
 
 
 
