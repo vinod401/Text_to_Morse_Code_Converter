@@ -3,27 +3,31 @@ import json
 with open('morse_codes.json') as file:
     morse_code_file = json.load(file)
 
+alphabet_list = list(morse_code_file.keys())
+code_list = list(morse_code_file.values())
+
 
 def encode(text):
-
     encoded_text = ''
-    for letter in text:
-        if letter == " ":
-            encoded_text += '/'
-        elif letter in morse_code_file:
-            encoded_text += f"{morse_code_file[letter]} "
+    for char in text:
+        if char == " ":
+            encoded_text += '/ '
+        elif char in alphabet_list:
+            encoded_text += f'{code_list[alphabet_list.index(char)]} '
 
     return encoded_text.strip()
 
-#
-# def decode(code):
-#     decoded_text = ''
-#     for char in code:
-#         if char == '/':
-#             decoded_text += " "
-#             else
+
+def decode(code):
+    decoded_text = ''
+    code_split = code.split(' ')
+    for char in code_split:
+        if char == '/':
+            decoded_text += ' '
+        elif char in code_list:
+            decoded_text += alphabet_list[code_list.index(char)]
+
+    return decoded_text.strip()
 
 
-input_text = input("Enter something to convert to morse code : ")
 
-print(encode(input_text.lower().strip()))
